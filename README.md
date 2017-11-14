@@ -1,5 +1,6 @@
 # smallsize
-Resizes all images in a folder and its subfolders to a fixed long side using PIL.
+Resizes or standardizes all images in a folder and its subfolders to a fixed long-edge using PIL.
+## Example: A folder contains images of sizes 3000x2000, 3000x1000 and 1200x3000px. With setting `longsidemax = 1000`, the images will be resized to 1000x667, 1000x333 and 400x1000px respectively.
 ---
 ## settings
 Standard is set as follows:
