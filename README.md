@@ -31,6 +31,6 @@ pip install progress
 ```
 * using __checksumdir__ package for calculating directory checksum, to improve performance by skipping unchanged directory
 ``` 
-pip install progress
+pip install checksumdir
 ```
 
