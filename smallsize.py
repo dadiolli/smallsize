@@ -75,15 +75,17 @@ def dir_changed(directory):
 
 print '💡  The fun can begin' + '...'
 # check if small size was there before
-if os.path.isdir(os.getcwd() + '/' + smallsizepath):
-	log(mode,"❎  The folder " + smallsizepath + " already exists, deleting it…\n")
-	shutil.rmtree(os.getcwd() + '/' + smallsizepath)
+if os.path.isabs(fullsizepath): # case: absolute path is used
+	sourcefolder = fullsizepath
+else:
+	sourcefolder = os.getcwd() + '/' + fullsizepath
+if os.path.isabs(smallsizepath): # case: absolute path is used
+	targetfolder = smallsizepath
+else:
+	targetfolder = os.getcwd() + '/' + smallsizepath
 
-sourcefolder = os.getcwd() + '/' + fullsizepath
-targetfolder = sourcefolder.replace(fullsizepath, smallsizepath)
-
-# Copy the source folder and work on that material
-shutil.copytree(sourcefolder, targetfolder, symlinks=False, ignore=None)
+if os.path.isdir(targetfolder):
+	log(mode,"❎  The target folder " + smallsizepath + " already exists.\n")
 
 sublist = [sub for sub in os.listdir(targetfolder) if os.path.isdir(os.path.join(targetfolder,sub))]
 
@@ -92,6 +94,8 @@ for path in sublist:
 	lampfolder = targetfolder + '/' + path
 	process = dir_changed(sourcefolder + '/' + path)
 	if process:
+		shutil.rmtree(targetfolder + '/' + path) # delete the subfolder in target folder
+		shutil.copytree(sourcefolder + '/' + path, targetfolder + '/' + path, symlinks=False, ignore=None)
 		allFolderPositions, filelist, widths, heights = [], [], [], []
 		spinner = MoonSpinner('⏳  images 🖼  are being counted. ')
 		for root, directories, filenames in os.walk(lampfolder):
