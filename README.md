@@ -15,8 +15,8 @@ mode = "log" # use print to see output on console as well.
 ```
 * `longsidemax` gives the __minimum__ and __maximum__ size of the longest side of the image.
 * `enlarge` if set to `True`, size of images smaller than `longsidemax` will be increased.
-* `fullsizepath` gives the source folder name
-* `smallsizepath` gives the target folder name
+* `fullsizepath` gives the source folder name. This can be absolute or direct relative path.
+* `smallsizepath` gives the target folder name. This can be absolute or direct relative path.
 * `mode` if `print` mode is used, log output is written to console as well.
 ---
 
