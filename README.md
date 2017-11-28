@@ -7,7 +7,7 @@ A folder contains images of sizes 3000x2000, 3000x1000 and 1200x3000px. With set
 ## settings
 Standard is set as follows:
 ```python
-longsidemax = 1400
+longsidemax = 720
 enlarge = False
 fullsizepath = 'full_size'
 smallsizepath = 'small'
