@@ -87,14 +87,21 @@ else:
 if os.path.isdir(targetfolder):
 	log(mode,"❎  The target folder " + smallsizepath + " already exists.\n")
 
-sublist = [sub for sub in os.listdir(targetfolder) if os.path.isdir(os.path.join(targetfolder,sub))]
+sublist = [sub for sub in os.listdir(sourcefolder) if os.path.isdir(os.path.join(sourcefolder,sub))]
 
 for path in sublist:
 	filecounter = 0
 	lampfolder = targetfolder + '/' + path
-	process = dir_changed(sourcefolder + '/' + path)
+	if not os.path.isdir(targetfolder + '/' + path):
+		process = True # process unchanged folder, when the target doesn't exist
+		log("print", "📂  " + path + " doesn't have small size, processing...")
+	else:
+		process = dir_changed(sourcefolder + '/' + path)
 	if process:
-		shutil.rmtree(targetfolder + '/' + path) # delete the subfolder in target folder
+		try:
+			shutil.rmtree(targetfolder + '/' + path) # delete the subfolder in target folder, if exists
+		except:
+			pass
 		shutil.copytree(sourcefolder + '/' + path, targetfolder + '/' + path, symlinks=False, ignore=None)
 		allFolderPositions, filelist, widths, heights = [], [], [], []
 		spinner = MoonSpinner('⏳  images 🖼  are being counted. ')
