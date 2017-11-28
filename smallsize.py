@@ -3,7 +3,7 @@
 # Settings
 ##############################################################################
 
-longsidemax = 1400
+longsidemax = 720
 enlarge = False # use "True" to allow increase of image size
 fullsizepath = 'full_size' # directory with full size images
 smallsizepath = 'small' # target folder
